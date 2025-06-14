@@ -382,57 +382,21 @@ module pcileech_pcie_cfg_a7(
                         rw[174]     <= 0;                                   // cfg_mgmt_byte_en: status register
                         rw[175]     <= rw[RWPOS_CFG_CFGSPACE_STATUS_CL_EN]; // cfg_mgmt_byte_en: status register
                     end
-            1: begin  // PCI Function Control Register 1 (40h)
+            1: begin  // IO RECOVERY REGISTER (40h)
                 rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000079;  // Default 79h
+		    rw[159:128] <= 32'h0000004d;  // Default 4dh
                 rw[169:160] <= 10'h10;        // Address 40h
                 rw[175:172] <= 4'b0001;       // Write byte 0
             end
-            2: begin  // PCI Function Control Register 2 (41h)
+            2: begin  // MISA ERROR STATUS REGISTER (42h)
                 rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000010;  // Default 10h
-                rw[169:160] <= 10'h10;        // Address 40h
-                rw[175:172] <= 4'b0010;       // Write byte 1
-            end
-            3: begin  // PCI Function Control Register 3 (42h)
-                rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000028;  // Default 28h
+		    rw[159:128] <= 32'h00000000;  // Default 00h
                 rw[169:160] <= 10'h10;        // Address 40h
                 rw[175:172] <= 4'b0100;       // Write byte 2
-            end
-            4: begin  // PCI Function Control Register 4 (43h)
-                rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000046;  // Default 46h
-                rw[169:160] <= 10'h10;        // Address 40h
-                rw[175:172] <= 4'b1000;       // Write byte 3
-            end
-            5: begin  // ISA CLK Divider (50h)
-                rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000043;  // Default 43h
-                rw[169:160] <= 10'h14;        // Address 50h
-                rw[175:172] <= 4'b0001;       // Write byte 0
-            end
-            6: begin  // ISA I/O Recovery Control (51h)
-                rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000043;  // Default 43h
-                rw[169:160] <= 10'h14;        // Address 50h
-                rw[175:172] <= 4'b0010;       // Write byte 1
-            end
-            7: begin  // ROM/AT Logic Control (52h)
-                rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000004;  // Default 04h
-                rw[169:160] <= 10'h14;        // Address 50h
-                rw[175:172] <= 4'b0100;       // Write byte 2
-            end
-            8: begin  // Decode Control Register 2 (5Bh)
-                rw[RWPOS_CFG_WR_EN] <= 1'b1;
-                rw[159:128] <= 32'h00000000;  // Default 00h
-                rw[169:160] <= 10'h16;        // Address 5Bh
-                rw[175:172] <= 4'b0001;       // Write byte 0
             end
             default: next_cfg_task <= 0;
         endcase
-        if(next_cfg_task < 8)
+	if(next_cfg_task < 2)
             next_cfg_task <= next_cfg_task + 1;
         else
             next_cfg_task <= 0;
