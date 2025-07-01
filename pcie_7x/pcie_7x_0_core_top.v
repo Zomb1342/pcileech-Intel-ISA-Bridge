@@ -64,11 +64,11 @@
 VC0_TX_LASTPACKET=29,VC0_RX_RAM_LIMIT=7FF,VC0_TOTAL_CREDITS_PH=4,VC0_TOTAL_CREDITS_PD=64,VC0_TOTAL_CREDITS_NPH=4,VC0_TOTAL_CREDITS_NPD=8,VC0_TOTAL_CREDITS_CH=72,VC0_TOTAL_CREDITS_CD=850,VC0_CPL_INFINITE=TRUE,DEV_CAP_PHANTOM_FUNCTIONS_SUPPORT=0,DEV_CAP_EXT_TAG_SUPPORTED=TRUE,LINK_STATUS_SLOT_CLOCK_CONFIG=TRUE,DISABLE_LANE_REVERSAL=TRUE,DISABLE_SCRAMBLING=FALSE,DSN_CAP_ON=TRUE,REVISION_ID=01,VC_CAP_ON=FALSE}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module pcie_7x_0_core_top # (
-  parameter         CFG_VEND_ID        = 16'h100B,
-  parameter         CFG_DEV_ID         = 16'h0021,
+  parameter         CFG_VEND_ID        = 16'h8086,
+  parameter         CFG_DEV_ID         = 16'h123c,
   parameter         CFG_REV_ID         =  8'h00,
-  parameter         CFG_SUBSYS_VEND_ID = 16'h1420,
-  parameter         CFG_SUBSYS_ID      = 16'h1691,
+  parameter         CFG_SUBSYS_VEND_ID = 16'h0000,
+  parameter         CFG_SUBSYS_ID      = 16'h0000,
   parameter         PCIE_ID_IF         ="TRUE", 
 
   parameter         EXT_PIPE_SIM = "FALSE",
@@ -81,10 +81,10 @@ module pcie_7x_0_core_top # (
   parameter         AER_CAP_MULTIHEADER = "FALSE",
   parameter [11:0]  AER_CAP_NEXTPTR = 12'h000,
   parameter [23:0]  AER_CAP_OPTIONAL_ERR_SUPPORT = 24'h000000,
-  parameter         AER_CAP_ON = "TRUE",
+  parameter         AER_CAP_ON = "FALSE",
   parameter         AER_CAP_PERMIT_ROOTERR_UPDATE = "FALSE",
 
-  parameter [31:0]  BAR0 = 32'hFFFFF001,
+  parameter [31:0]  BAR0 = 32'h00000000,
   parameter [31:0]  BAR1 = 32'h00000000,
   parameter [31:0]  BAR2 = 32'h00000000,
   parameter [31:0]  BAR3 = 32'h00000000,
@@ -122,7 +122,7 @@ module pcie_7x_0_core_top # (
   parameter [10:0]  ENABLE_MSG_ROUTE = 11'b00000000000,
   parameter         ENABLE_RX_TD_ECRC_TRIM = "FALSE",
   parameter [31:0]  EXPANSION_ROM = 32'h00000000,
-  parameter [5:0]   EXT_CFG_CAP_PTR = 6'h00,
+  parameter [5:0]   EXT_CFG_CAP_PTR = 6'h37,
   parameter [9:0]   EXT_CFG_XP_CAP_PTR = 10'h3ff,
   parameter [7:0]   HEADER_TYPE = 8'h00,
   parameter [7:0]   INTERRUPT_PIN = 8'h01,
@@ -137,7 +137,7 @@ module pcie_7x_0_core_top # (
   parameter         LINK_CTRL2_DEEMPHASIS = "FALSE",
   parameter         LINK_CTRL2_HW_AUTONOMOUS_SPEED_DISABLE = "FALSE",
   parameter [3:0]   LINK_CTRL2_TARGET_LINK_SPEED = 4'h2,
-  parameter         LINK_STATUS_SLOT_CLOCK_CONFIG = "TRUE",
+  parameter         LINK_STATUS_SLOT_CLOCK_CONFIG = "FALSE",
 
   parameter [14:0]  LL_ACK_TIMEOUT = 15'h0000,
   parameter         LL_ACK_TIMEOUT_EN = "FALSE",
@@ -163,7 +163,7 @@ module pcie_7x_0_core_top # (
   parameter [3:0]   PCIE_CAP_DEVICE_PORT_TYPE = 4'h0,
   parameter [7:0]   PCIE_CAP_NEXTPTR = 8'h00,
 
-   parameter         PM_CAP_DSI = "FALSE",
+  parameter         PM_CAP_DSI = "FALSE",
   parameter         PM_CAP_D1SUPPORT = "FALSE",
   parameter         PM_CAP_D2SUPPORT = "FALSE",
   parameter [7:0]   PM_CAP_NEXTPTR = 8'h80,
@@ -289,7 +289,7 @@ module pcie_7x_0_core_top # (
   parameter         N_FTS_GEN1 = 255,
   parameter         N_FTS_GEN2 = 255,
 
-  parameter [7:0]   PCIE_BASE_PTR = 8'h80,
+  parameter [7:0]   PCIE_BASE_PTR = 8'hec,
   parameter [7:0]   PCIE_CAP_CAPABILITY_ID = 8'h10,
   parameter [3:0]   PCIE_CAP_CAPABILITY_VERSION = 4'h2,
   parameter         PCIE_CAP_ON = "TRUE",
@@ -306,7 +306,7 @@ module pcie_7x_0_core_top # (
   parameter         TRANSCEIVER_CTRL_STATUS_PORTS = "FALSE", 
   parameter         SHARED_LOGIC_IN_CORE = "FALSE",
 
-  parameter [7:0]   PM_BASE_PTR = 8'h60,
+  parameter [7:0]   PM_BASE_PTR = 8'hdc,
   parameter         PM_CAP_AUXCURRENT = 0,
   parameter [7:0]   PM_CAP_ID = 8'h01,
   parameter         PM_CAP_ON = "TRUE",
@@ -356,7 +356,7 @@ module pcie_7x_0_core_top # (
   parameter         EXIT_LOOPBACK_ON_EI = "TRUE",
 
   parameter         CFG_ECRC_ERR_CPLSTAT = 0,
-  parameter [7:0]   CAPABILITIES_PTR = 8'h100,
+  parameter [7:0]   CAPABILITIES_PTR = 8'hdc,
   parameter [6:0]   CRM_MODULE_RSTS = 7'h00,
   parameter         DEV_CAP_ENABLE_SLOT_PWR_LIMIT_SCALE = "TRUE",
   parameter         DEV_CAP_ENABLE_SLOT_PWR_LIMIT_VALUE = "TRUE",
